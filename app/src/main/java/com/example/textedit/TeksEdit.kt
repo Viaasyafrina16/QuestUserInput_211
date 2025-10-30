@@ -4,12 +4,14 @@ import android.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -18,7 +20,7 @@ import androidx.compose.ui.unit.dp
 fun FormDataDiri(modifier : Modifier
 ){
     //variabel-variabel untuk mengingat nilai masukan dari keyboard
-    var textNama by remember{ mutableStateOf( "")}
+    var textNama by remember { mutableStateOf( "")}
     var textAlamat by remember{ mutableStateOf( "")}
     var textJK by remember{ mutableStateOf("")}
 
@@ -44,7 +46,11 @@ fun FormDataDiri(modifier : Modifier
             }
         )
         Row {
-            gender.
+            gender.forEach { item ->
+                Row(modifier = Modifier.selectable(
+                    selected = textJK == item,
+                    onclick = {textJK =item}
+                )
 
         }
 
