@@ -93,7 +93,14 @@ fun FormDataDiri(modifier : Modifier
         Button(
             modifier = Modifier.fillMaxWidth( 1f),
             enabled = textNama,
-        )
+            onClick = {
+                nama = textNama
+                jenis=textJK
+                alamat = textAlamat
+            }
+        ){
+            Text(text = stringResource(R.string.submit))
+        }
 
 
 
