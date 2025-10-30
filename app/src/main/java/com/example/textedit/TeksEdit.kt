@@ -58,8 +58,9 @@ fun FormDataDiri(modifier : Modifier
                 Row(
                     modifier = Modifier.selectable(
                         selected = textJK == item,
-                        onclick = { textJK = item }
-                    ), verticalAlignment = Alignment.CenterHorizontally
+                        onClick = { textJK = item }
+                    ),
+                    verticalAlignment = Alignment.CenterHorizontally
                 ) {
                     RadioButton(
                         selected = textJK == item,
@@ -88,7 +89,7 @@ fun FormDataDiri(modifier : Modifier
                     id = R.dimen.padding_medium
                 )),
             thickness = dimensionResource(R.dimen.divider_tipis)
-            color = Color.darkGrey
+            color= Color.darkGrey
         )
         Button(
             modifier = Modifier.fillMaxWidth( 1f),
@@ -101,6 +102,16 @@ fun FormDataDiri(modifier : Modifier
         ){
             Text(text = stringResource(R.string.submit))
         }
+
+        HorizontalDivider(
+            modifier = Modifier.padding(
+                bottom = dimensionResource(R.dimen.padding_medium),
+                top = dimensionResource(
+                    id = R.dimen.padding_medium
+                )),
+            thickness = dimensionResource(R.dimen.divider_tipis)
+            color= Color.darkGrey
+        )
 
 
 
