@@ -1,10 +1,14 @@
 package com.example.textedit
 
-
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -35,9 +39,9 @@ fun FormDataDiri(modifier : Modifier
 
     val gender:List<String> = ListOf("Laki-laki", "Perempuan")
 
-    Column(modifier = Modifier.padding(top= 50.dp),
+    Column (modifier = Modifier.padding(top= 50.dp),
         verticalArrangement = Arrangement.top,
-        horizontalAligment = Alignment.CenterHorizontally){
+        horizontalAlignment = Alignment.CenterHorizontally){
         OutlinedTextField(
             value = textNama,
             singleLine = true,
@@ -55,7 +59,8 @@ fun FormDataDiri(modifier : Modifier
                     modifier = Modifier.selectable(
                         selected = textJK == item,
                         onclick = { textJK = item }
-                    ), verticalAlignment = Alignment.CenterHorizontally) {
+                    ), verticalAlignment = Alignment.CenterHorizontally
+                ) {
                     RadioButton(
                         selected = textJK == item,
                         onClick = {
@@ -78,10 +83,18 @@ fun FormDataDiri(modifier : Modifier
 
         HorizontalDivider(
             modifier = Modifier.padding(
-                bottom = dimensionResource(30dp),
+                bottom = dimensionResource(R.dimen.padding_medium),
                 top = dimensionResource(
-                    id = 30dp
+                    id = R.dimen.padding_medium
                 )),
+            thickness = dimensionResource(R.dimen.divider_tipis)
+            color = Color.darkGrey
+        )
+        Button(
+            modifier = Modifier.fillMaxWidth( 1f),
+            enabled = textNama,
+        )
+
 
 
 
