@@ -6,9 +6,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -23,6 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import androidx.compose.material3.CardDefaults
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun FormDataDiri(modifier : Modifier
@@ -37,18 +43,18 @@ fun FormDataDiri(modifier : Modifier
     var alamat by remember {mutableStateOf( "")}
     var jenis by remember {mutableStateOf( "")}
 
-    val gender:List<String> = ListOf("Laki-laki", "Perempuan")
+    val gender:List<String> = listOf("Laki-laki", "Perempuan")
 
     Column (modifier = Modifier.padding(top= 50.dp),
-        verticalArrangement = Arrangement.top,
-        horizontalAlignment = Alignment.CenterHorizontally){
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(
             value = textNama,
             singleLine = true,
             shape = MaterialTheme.shapes.large,
-            modifier = Modifier.width(  250.dp),
-            label = { Text(text = "Nama Lengkap" ) },
-            onValueChange =  {
+            modifier = Modifier.width(250.dp),
+            label = { Text(text = "Nama Lengkap") },
+            onValueChange = {
                 textNama = it
 
             }
@@ -60,12 +66,11 @@ fun FormDataDiri(modifier : Modifier
                         selected = textJK == item,
                         onClick = { textJK = item }
                     ),
-                    verticalAlignment = Alignment.CenterHorizontally
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     RadioButton(
                         selected = textJK == item,
-                        onClick = {
-                            textJK = item
+                        onClick = { textJK = item
                         })
                     Text(item)
 
@@ -73,10 +78,10 @@ fun FormDataDiri(modifier : Modifier
             }
         }
         OutlinedTextField(
-            value= textAlamat,
-            singleLine =  true,
-            modifier = Modifier.width( 250.dp),
-            label = { Text(text = "Alamat Lengkap" )},
+            value = textAlamat,
+            singleLine = true,
+            modifier = Modifier.width(250.dp),
+            label = { Text(text = "Alamat Lengkap") },
             onValueChange = {
                 textAlamat = it
             }
@@ -87,19 +92,20 @@ fun FormDataDiri(modifier : Modifier
                 bottom = dimensionResource(R.dimen.padding_medium),
                 top = dimensionResource(
                     id = R.dimen.padding_medium
-                )),
-            thickness = dimensionResource(R.dimen.divider_tipis)
-            color= Color.darkGrey
+                )
+            ),
+            thickness = dimensionResource(R.dimen.divider_tipis),
+                    color= Color.DarkGray
         )
         Button(
-            modifier = Modifier.fillMaxWidth( 1f),
-            enabled = textNama,
+            modifier = Modifier.fillMaxWidth(1f),
+            enabled = textNama.isNotEmpty(),
             onClick = {
                 nama = textNama
-                jenis=textJK
+                jenis = textJK
                 alamat = textAlamat
             }
-        ){
+        ) {
             Text(text = stringResource(R.string.submit))
         }
 
@@ -108,17 +114,24 @@ fun FormDataDiri(modifier : Modifier
                 bottom = dimensionResource(R.dimen.padding_medium),
                 top = dimensionResource(
                     id = R.dimen.padding_medium
-                )),
-            thickness = dimensionResource(R.dimen.divider_tipis)
-            color= Color.darkGrey
+                )
+            ),
+            thickness = dimensionResource(R.dimen.divider_tipis),
+                    color = Color.DarkGray
 
         )
-
-
-
-
-
-
-
+        ElevatedCard (
+            elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.Black),
+            modifier = Modifier
+                .height(100.dp)
+                .width(300.dp)
+        ) {
+            Column (modifier = Modifier.padding(horizontal = 5.dp, vertical = 15.dp),) {
+                Text(text = "Nama   : " + nama, color = Color.White)
+                Text(text = "Gender : " + jenis, color = Color.White)
+                Text(text = "Alamat : " + alamat, color = Color.White)
+            }
+        }
     }
 }
