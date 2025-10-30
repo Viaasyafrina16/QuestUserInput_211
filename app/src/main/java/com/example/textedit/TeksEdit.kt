@@ -1,6 +1,6 @@
 package com.example.textedit
 
-import android.R
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.width
@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.RadialGradient
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -31,7 +31,7 @@ fun FormDataDiri(modifier : Modifier
     var alamat by remember {mutableStateOf( "")}
     var jenis by remember {mutableStateOf( "")}
 
-    val gender:List<String> = Listof("Laki-laki", "Perempuan")
+    val gender:List<String> = ListOf("Laki-laki", "Perempuan")
 
     Column(modifier = Modifier.padding(top= 50.dp),
         verticalArrangement = Arrangement.top,
@@ -64,6 +64,17 @@ fun FormDataDiri(modifier : Modifier
                 }
             }
         }
+        OutlinedTextField(
+            value= textAlamat,
+            singleLine =  true,
+            modifier = Modifier.width( 250.dp),
+            label = { Text(text = "Alamat Lengkap" )},
+            onValueChange = {
+                textAlamat = it
+            }
+
+
+        )
 
 
 
